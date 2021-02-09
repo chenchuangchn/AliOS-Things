@@ -91,6 +91,7 @@ kstat_t krhino_mblk_alloc(mblk_pool_t *pool, void **blk)
         /* the first 4 byte is the pointer for next block */
         pool->avail_list   = *(uint8_t **)(avail_blk);
         pool->blk_avail--;
+	*(uint8_t **)(avail_blk) = NULL;
         status = RHINO_SUCCESS;
     } else {
         *((uint8_t **)blk) = NULL;
